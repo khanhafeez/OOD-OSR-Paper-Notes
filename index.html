@@ -182,6 +182,40 @@
       <h2>Papers</h2>
       <div class="paper-list">
 
+      <article class="paper-card">
+          <div class="paper-title">
+            [1] Out-of-Distribution Detection with Deep Nearest Neighbors
+          </div>
+          <div class="paper-meta">
+            <span>ICML 2022</span>
+            <span>Citations: 1,121 (as on date 08/15/2026)</span>
+            <span>Category: Distance-based</span>
+          </div>
+          <div class="paper-link">
+            <a href="https://proceedings.mlr.press/v162/sun22d/sun22d.pdf" target="_blank" rel="noopener noreferrer">
+              Paper link
+            </a>
+          </div>
+          <div class="paper-summary">
+            <p>
+              Most prior distance-based OOD detection methods assume the ID feature embeddings for each class follow a Gaussian distribution, and use 
+              Mahalanobis distance to the nearest class centroid to flag OOD samples. But this assumption often doesn't hold in practice, which makes 
+              Mahalanobis distance unreliable for OOD detection. It's also computationally expensive, since it requires inverting a covariance matrix.
+            </p>
+            <p>
+              In this paper, a non-parametric KNN approach is proposed which makes no assumption about the shape of the feature distribution. Both 
+              training and test embeddings are L2-normalized, and a test sample is flagged as OOD if its distance to the k-th nearest neighbor in the 
+              training set is larger than a threshold. This threshold is calibrated using only ID validation data, chosen so that the true positive rate 
+              on ID samples is 95% (TPR@95). The approach works best when the feature space is compact and well-separated. Training with supervised 
+              contrastive loss instead of cross-entropy makes the embeddings more compact within each class and more separated across classes, enabling 
+              the KNN distance to perform better for OOD detection. 
+            </p>
+            <div class="paper-figure">
+              <img src="images/knn-ood.png" alt="KNN-OOD algorithm">
+              <p class="caption">Figure: KNN-OOD Algorithm [1].</p>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
