@@ -203,7 +203,7 @@
               Mahalanobis distance unreliable for OOD detection. It's also computationally expensive, since it requires inverting a covariance matrix.
             </p>
             <p>
-              In this paper, a non-parametric KNN approach is proposed which makes no assumption about the shape of the feature distribution. Both 
+              In this paper, a non-parametric approach leveraging KNN is proposed, which makes no assumption about the shape of the feature distribution. Both 
               training and test embeddings are L2-normalized, and a test sample is flagged as OOD if its distance to the k-th nearest neighbor in the 
               training set is larger than a threshold. This threshold is calibrated using only ID validation data, chosen so that the true positive rate 
               on ID samples is 95% (TPR@95). The approach works best when the feature space is compact and well-separated. Training with supervised 
