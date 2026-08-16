@@ -216,6 +216,42 @@
             </div>
           </div>
         </article>
+
+        <article class="paper-card">
+          <div class="paper-title">
+            [2] ViM: Out-Of-Distribution with Virtual-logit Matching
+          </div>
+          <div class="paper-meta">
+            <span>CVPR 2022</span>
+            <span>Citations: 748 (as on date 08/16/2026)</span>
+            <span>Category: OOD, Classification-based</span>
+          </div>
+          <div class="paper-link">
+            <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_ViM_Out-of-Distribution_With_Virtual-Logit_Matching_CVPR_2022_paper.pdf" target="_blank" rel="noopener noreferrer">
+              Paper link
+            </a>
+          </div>
+          <div class="paper-summary">
+            <p>
+              Most prior OOD detection methods rely on a single information source, either the feature, the logit, or the softmax probability. But logits and 
+              softmax probabilities are computed from a linear projection of the feature, so they discard information that lies outside this projection, 
+              information that can still be useful for detecting OOD samples. Feature-based methods like Mahalanobis, on the other hand, ignore class-dependent 
+              information that logits naturally capture, causing them to underperform on OOD samples that require fine-grained class distinctions.
+            </p>
+            <p>
+              In this paper, a method called Virtual-logit Matching (ViM) is proposed, which combines both feature-space and logit-space information into a single 
+              OOD score. After training a neural network, a principal subspace is estimated from the ID training features using PCA. For a given input, the 
+              residual (the feature component lying outside this principal subspace) is computed and its norm is rescaled by a precomputed constant into a virtual 
+              logit. This virtual logit is appended to the real class logits, and after softmax, the probability assigned to it is used as the OOD score. As a 
+              result, ViM captures information invisible to logit-based methods (via the residual) and information invisible to feature-based methods (via the 
+              real logits), and outperforms both feature-only and logit-only baselines across diverse OOD benchmarks.
+            </p>
+            <div class="paper-figure">
+              <img src="images/vim.png" alt="ViM Architecture">
+              <p class="caption">Figure: ViM Architecture [2].</p>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
