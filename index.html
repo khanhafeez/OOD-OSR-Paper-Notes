@@ -252,45 +252,43 @@
             </div>
           </div>
         </article>
-      </div>
-    </section>
 
-    <article class="paper-card">
-          <div class="paper-title">
-            [3] Towards Open Set Deep Networks
-          </div>
-          <div class="paper-meta">
-            <span>CVPR 2016</span>
-            <span>Citations: 2,599 (as on date 08/17/2026)</span>
-            <span>Category: OSR, Classification-based</span>
-          </div>
-          <div class="paper-link">
-            <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_ViM_Out-of-Distribution_With_Virtual-Logit_Matching_CVPR_2022_paper.pdf" target="_blank" rel="noopener noreferrer">
-              Paper link
-            </a>
-          </div>
-          <div class="paper-summary">
-            <p>
-              Standard deep networks are closed-set: softmax forces every input into one of the known classes, even if it doesn't belong to any of them. This becomes 
-              a real problem in the open world, where models will inevitably encounter unknown categories, and can even be fooled into giving high-confidence 
-              predictions on meaningless or adversarial images. Simply thresholding softmax probability helps a little, but doesn't reliably catch these cases, since
-              softmax always produces a normalized distribution over known classes regardless of how unrelated the input actually is.
-            </p>
-            <p>
-              The paper proposes OpenMax, a replacement for the softmax layer that can explicitly output an "unknown" class. For each class, a mean activation vector
-              is computed from correctly classified training examples, using the penultimate layer (before softmax). The distances of these training examples from their
-              class mean are used to fit a Weibull distribution per class, based on extreme value theory. At test time, the distance of a new input from each class mean
-              is converted into a probability of being an outlier using this Weibull model, and this is used to discount the top few activation scores, most heavily for
-              the highest ranked class. The discounted amount is redirected into a new "unknown" class score, and softmax is then computed over all scores together. If
-              the unknown class wins, or if the top prediction's confidence is too low, the input is rejected as unknown. This lets the network detect open set and fooling
-              inputs by recalibrating its existing scores.
-            </p>
-            <div class="paper-figure">
-              <img src="images/openmax.png" alt="OpenMax Algorithm">
-              <p class="caption">Figure: OpenMax Algorithm [3].</p>
-            </div>
-          </div>
-        </article>
+        <article class="paper-card">
+              <div class="paper-title">
+                [3] Towards Open Set Deep Networks
+              </div>
+              <div class="paper-meta">
+                <span>CVPR 2016</span>
+                <span>Citations: 2,599 (as on date 08/17/2026)</span>
+                <span>Category: OSR, Classification-based</span>
+              </div>
+              <div class="paper-link">
+                <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_ViM_Out-of-Distribution_With_Virtual-Logit_Matching_CVPR_2022_paper.pdf" target="_blank" rel="noopener noreferrer">
+                  Paper link
+                </a>
+              </div>
+              <div class="paper-summary">
+                <p>
+                  Standard deep networks are closed-set: softmax forces every input into one of the known classes, even if it doesn't belong to any of them. This becomes 
+                  a real problem in the open world, where models will inevitably encounter unknown categories, and can even be fooled into giving high-confidence 
+                  predictions on meaningless or adversarial images. Simply thresholding softmax probability helps a little, but doesn't reliably catch these cases, since
+                  softmax always produces a normalized distribution over known classes regardless of how unrelated the input actually is.
+                </p>
+                <p>
+                  The paper proposes OpenMax, a replacement for the softmax layer that can explicitly output an "unknown" class. For each class, a mean activation vector
+                  is computed from correctly classified training examples, using the penultimate layer (before softmax). The distances of these training examples from their
+                  class mean are used to fit a Weibull distribution per class, based on extreme value theory. At test time, the distance of a new input from each class mean
+                  is converted into a probability of being an outlier using this Weibull model, and this is used to discount the top few activation scores, most heavily for
+                  the highest ranked class. The discounted amount is redirected into a new "unknown" class score, and softmax is then computed over all scores together. If
+                  the unknown class wins, or if the top prediction's confidence is too low, the input is rejected as unknown. This lets the network detect open set and fooling
+                  inputs by recalibrating its existing scores.
+                </p>
+                <div class="paper-figure">
+                  <img src="images/openmax.png" alt="OpenMax Algorithm">
+                  <p class="caption">Figure: OpenMax Algorithm [3].</p>
+                </div>
+              </div>
+            </article>
       </div>
     </section>
 
