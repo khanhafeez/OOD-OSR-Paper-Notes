@@ -155,7 +155,13 @@
     .empty {
       color: #d1d5db;
     }
-
+    
+    .optional {
+      color: gray;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+    
     footer {
       margin-top: 32px;
       font-size: 0.8rem;
@@ -289,6 +295,42 @@
                 </div>
               </div>
             </article>
+
+            <article class="paper-card">
+              <div class="paper-title">
+                [4] SSD: A UNIFIED FRAMEWORK FOR SELFSUPERVISED OUTLIER DETECTION
+              </div>
+              <div class="paper-meta">
+                <span>ICLR 2021</span>
+                <span>Citations: 561 (as on date 08/18/2026)</span>
+                <span>Category: OOD, Distance-based</span>
+              </div>
+              <div class="paper-link">
+                <a href="https://openreview.net/pdf?id=v5gjXpmR8J" target="_blank" rel="noopener noreferrer">
+                  Paper link
+                </a>
+              </div>
+              <div class="paper-summary">
+                <p>
+                  OOD detection techniques have mostly relied on models trained with fine-grained class labels for the in-distribution data. Collecting such labels
+                  at scale is expensive, which limits how widely these methods can be applied. Prior works with autoencoders have explored reconstruction error a
+                  s a metric to identify OOD, but they perform poorly, since reconstruction error doesn't reliably reflect the semantic features learned by the model.
+                </p>
+                <p>
+                  To address this, SSD first trains a feature extractor using self-supervised contrastive learning, so that semantically similar images naturally end
+                  up close together in the feature space. Since there are no labels to define per-class centroids, k-means clustering is applied directly on the learned
+                  features to identify clusters. Mahalanobis distance to the nearest cluster's mean and covariance is then used as the outlier score, with the threshold
+                  set at TPR@95, calibrated on held-out ID data. The framework is further extended in two ways. When a few real OOD samples are available, their statistics
+                  are incorporated directly into the scoring function to improve detection. And when ID labels are available, the self-supervised loss is replaced with
+                  supervised contrastive loss, so the resulting clusters carry class-specific information, making the Mahalanobis distance to these clusters more effective
+                  for OOD detection.
+                </p>
+                <div class="paper-figure">
+                  <img src="images/ssd.png" alt="SSD Algorithm">
+                  <p class="caption">Figure: SSD Algorithm [4].</p>
+                </div>
+              </div>
+            </article>
       </div>
     </section>
     
@@ -328,6 +370,13 @@
               <td>OpenMax [3]</td>
               <td class="empty"></td>
               <td class="check"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+            </tr>
+            <tr>
+              <td>SSD [4]</td>
+              <td class="check"></td>
+              <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
             </tr>
@@ -380,6 +429,15 @@
               <td class="empty"></td>
               <td class="empty"></td>
             </tr>
+            <tr>
+              <td>SSD [4]</td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+              <td class="check"></td>
+              <td class="optional">Optional</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -415,6 +473,12 @@
               <td>OpenMax [3]</td>
               <td class="empty"></td>
               <td class="check"></td>
+              <td class="empty"></td>
+            </tr>
+            <tr>
+              <td>SSD [4]</td>
+              <td class="checl"></td>
+              <td class="empty"></td>
               <td class="empty"></td>
             </tr>
           </tbody>
