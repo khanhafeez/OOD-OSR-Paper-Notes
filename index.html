@@ -367,6 +367,47 @@
                 </div>
               </div>
             </article>
+
+            <article class="paper-card">
+              <div class="paper-title">
+                [6] Dream the Impossible: Outlier Imagination with Diffusion Models
+              </div>
+              <div class="paper-meta">
+                <span>NeurIPS 2023</span>
+                <span>Citations: 133 (as on date 08/20/2026)</span>
+                <span>Category: OOD, Classification-based</span>
+              </div>
+              <div class="paper-link">
+                <a href="https://proceedings.neurips.cc/paper_files/paper/2023/file/bf5311df07f3efce97471921e6d2f159-Paper-Conference.pdf" target="_blank" rel="noopener noreferrer">
+                  Paper link
+                </a>
+              </div>
+              <div class="paper-summary">
+                <p>
+                  Prior work showed that training with auxiliary outlier data helps regularize a classifier's decision boundary to be more conservative around 
+                  in-distribution (ID) data, but collecting real outlier datasets is labor-intensive and requires careful curation to avoid overlap with ID classes. 
+                  Some previous works synthesized outliers in latent space and used them directly for training, but those features could not be visually inspected 
+                  or understood. We may leverage diffusion models to generate images from text prompts, but it is hard to describe "what an outlier looks like" in words.
+                </p>
+                <p>
+                  DREAM-OOD addresses this in two phases. In Phase 1, it trains an image feature encoder on only the ID data, using a contrastive loss that pulls each 
+                  image's embedding toward its class's text token embedding from the text encoder. In Phase 2, it samples new embeddings from the low-likelihood boundary 
+                  region of this learned space: for each ID point, it computes k-NN distance to find points near the boundary, draws several candidate embeddings from a 
+                  Gaussian centered there, and keeps the one farthest from ID data (largest k-NN distance). Each sampled embedding is then decoded into pixel-space by 
+                  feeding it into the diffusion model. These synthetic outlier images are used to regularize a classifier: during training, each batch contains both real 
+                  ID images and synthetic OOD images, and both are passed through the same classifier backbone to get logits. The real ID images' logits are only used for 
+                  the regular cross-entropy classification loss. In addition, a small 3-layer MLP head sits on top of the classifier's logits, computing a single energy 
+                  score from them and passing it through a sigmoid; this head is trained with a binary cross-entropy loss, where ID images (real) are treated as the 
+                  positive class and OOD images (synthetic) as the negative class. The total training loss combines the classification loss and this OOD regularization 
+                  loss, weighted by a factor of Beta. At inference, a single forward pass on a test image gives both a class prediction (from the softmax output) and an 
+                  OOD score (from the energy-MLP-sigmoid branch).
+                </p>
+                <div class="paper-figure">
+                  <img src="images/dream-ood.png" alt="Dream-OOD Architecture">
+                  <p class="caption">Figure: Dream-OOD Architecture [6].</p>
+                </div>
+              </div>
+            </article>
       </div>
     </section>
     
@@ -420,6 +461,13 @@
               <td>MCM [5]</td>
               <td class="check"></td>
               <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+            </tr>
+            <tr>
+              <td>Dream-OOD [6]</td>
+              <td class="empty"></td>
+              <td class="check"></td>
               <td class="empty"></td>
               <td class="empty"></td>
             </tr>
@@ -496,6 +544,16 @@
               <td class="empty"></td>
               <td class="check"></td>
             </tr>
+            <tr>
+              <td>Dream-OOD [6]</td>
+              <td class="check"></td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+              <td class="check"></td>
+              <td class="check"></td>
+              <td class="check"></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -550,6 +608,13 @@
               <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
+            </tr>
+            <tr>
+              <td>Dream-OOD [6]</td>
+              <td class="empty"></td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
             </tr>
           </tbody>
         </table>
