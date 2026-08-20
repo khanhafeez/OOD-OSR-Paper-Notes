@@ -331,6 +331,40 @@
                 </div>
               </div>
             </article>
+
+            <article class="paper-card">
+              <div class="paper-title">
+                [5] Delving into Out-of-Distribution Detection with Vision-Language Representations
+              </div>
+              <div class="paper-meta">
+                <span>NeurIPS 2022</span>
+                <span>Citations: 358 (as on date 08/20/2026)</span>
+                <span>Category: OOD, Distance-based</span>
+              </div>
+              <div class="paper-link">
+                <a href="https://proceedings.neurips.cc/paper_files/paper/2022/file/e43a33994a28f746dcfd53eb51ed3c2d-Paper-Conference.pdf" target="_blank" rel="noopener noreferrer">
+                  Paper link
+                </a>
+              </div>
+              <div class="paper-summary">
+                <p>
+                  OOD detection methods leverage a single modality (visual features), leaving the rich information in multi-modal representations untapped.
+                  Vision-language models like CLIP align images with their text descriptions during pretraining, offering context-richs representation that can be used for OOD.
+                </p>
+                <p>
+                  Maximum Concept Matching (MCM) is proposed, which is a zero-shot OOD detection method built on CLIP.
+                  Each ID class name is embedded using CLIP's text encoder to form a concept prototype. For a test image, its embedding is compared to each concept
+                  prototype using cosine similarity, giving one similarity score per ID class. These similarity scores are then passed through softmax, scaled by
+                  a temperature parameter, turning them into a probability distribution over the K classes. If one class's probability is significantly higher
+                  than the rest, the image matches that concept well and is likely ID. Conversely, if the probabilities are low and spread evenly across all classes, the
+                  image doesn't match any known concept and is likely OOD.
+                </p>
+                <div class="paper-figure">
+                  <img src="images/mcm.png" alt="MCM Architecture">
+                  <p class="caption">Figure: MCM Architecture [5].</p>
+                </div>
+              </div>
+            </article>
       </div>
     </section>
     
@@ -380,6 +414,13 @@
               <td class="empty"></td>
               <td class="empty"></td>
             </tr>
+            <tr>
+              <td>MCM [5]</td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -398,6 +439,7 @@
               <th>Pre-training method</th>
               <th>L2 normalization</th>
               <th>Additional Data</th>
+              <th>Multi-modal Data</th>
             </tr>
           </thead>
           <tbody>
@@ -410,12 +452,14 @@
               <td class="empty"></td>
               <td class="check"></td>
               <td class="empty"></td>
+              <td class="empty"></td>
             </tr>
             <tr>
               <td>ViM [2]</td>
               <td class="check"></td>
               <td class="empty"></td>
               <td class="check"></td>
+              <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
@@ -428,6 +472,7 @@
               <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
+              <td class="empty"></td>
             </tr>
             <tr>
               <td>SSD [4]</td>
@@ -437,6 +482,17 @@
               <td class="check"></td>
               <td class="check"></td>
               <td class="optional">Optional</td>
+              <td class="empty"></td>
+            </tr>
+            <tr>
+              <td>MCM [5]</td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
             </tr>
           </tbody>
         </table>
@@ -477,6 +533,12 @@
             </tr>
             <tr>
               <td>SSD [4]</td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+            </tr>
+            <tr>
+              <td>MCM [5]</td>
               <td class="check"></td>
               <td class="empty"></td>
               <td class="empty"></td>
