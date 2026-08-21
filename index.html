@@ -408,6 +408,41 @@
                 </div>
               </div>
             </article>
+
+            <article class="paper-card">
+              <div class="paper-title">
+                [7] Unsupervised Out-of-Distribution Detection with Diffusion Inpainting
+              </div>
+              <div class="paper-meta">
+                <span>ICML 2023</span>
+                <span>Citations: 95 (as on date 08/21/2026)</span>
+                <span>Category: OOD, Reconstruction-based</span>
+              </div>
+              <div class="paper-link">
+                <a href="https://proceedings.mlr.press/v202/liu23bd/liu23bd.pdf" target="_blank" rel="noopener noreferrer">
+                  Paper link
+                </a>
+              </div>
+              <div class="paper-summary">
+                <p>
+                  OOD detection methods that rely on out-of-domain samples or in-domain class labels achieve strong performance, but such supervision is often unavailable 
+                  in practice. Unlabeled in-domain data, on the other hand, is already available and can be leveraged for OOD detection.
+                </p>
+                <p>
+                  Lift, Map, Detect (LMD) proposes a method to identify OOD data by leveraging an in-distribution-trained diffusion model. It exploits the property that a 
+                  diffusion model learns a mapping onto the manifold of its training data, and turns this into an unsupervised OOD detector: if we lift an image off its 
+                  manifold (through corruption), the diffusion model should map it back close to its original position, provided the model was trained on the same manifold. 
+                  If instead the diffusion model was trained on a different manifold, it would attempt to map the lifted image toward its own training manifold, resulting 
+                  in a large distance between the original and mapped images. In this method, an image is first masked (lift), then inpainted using the diffusion model (map). 
+                  If the image is in-distribution, the reconstruction should closely match the original with low error; if it is out-of-distribution, the reconstruction error 
+                  should be large (detect). This reconstruction error, measured using LPIPS, serves directly as the image's OOD score.
+                </p>
+                <div class="paper-figure">
+                  <img src="images/lmd.png" alt="LMD Architecture">
+                  <p class="caption">Figure: LMD Architecture [7].</p>
+                </div>
+              </div>
+            </article>
       </div>
     </section>
     
@@ -470,6 +505,13 @@
               <td class="check"></td>
               <td class="empty"></td>
               <td class="empty"></td>
+            </tr>
+            <tr>
+              <td>LMD [7]</td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
             </tr>
           </tbody>
         </table>
@@ -554,6 +596,16 @@
               <td class="check"></td>
               <td class="check"></td>
             </tr>
+            <tr>
+              <td>LMD [7]</td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -570,6 +622,7 @@
               <th>Logit</th>
               <th>Probability</th>
               <th>Extra Class</th>
+              <th>Reconstruction Error</th>
             </tr>
           </thead>
           <tbody>
@@ -580,6 +633,7 @@
               <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
+              <td class="empty"></td>
             </tr>
             <tr>
               <td>ViM [2]</td>
@@ -587,6 +641,7 @@
               <td class="check"></td>
               <td class="empty"></td>
               <td class="check"></td>
+              <td class="empty"></td>
             </tr>
             <tr>
               <td>OpenMax [3]</td>
@@ -594,10 +649,12 @@
               <td class="check"></td>
               <td class="empty"></td>
               <td class="check"></td>
+              <td class="empty"></td>
             </tr>
             <tr>
               <td>SSD [4]</td>
               <td class="check"></td>
+              <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
@@ -608,11 +665,21 @@
               <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
+              <td class="empty"></td>
             </tr>
             <tr>
               <td>Dream-OOD [6]</td>
               <td class="empty"></td>
               <td class="check"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+              <td class="empty"></td>
+            </tr>
+            <tr>
+              <td>LMD [7]</td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
               <td class="empty"></td>
               <td class="check"></td>
             </tr>
