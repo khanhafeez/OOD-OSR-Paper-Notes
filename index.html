@@ -443,6 +443,46 @@
                 </div>
               </div>
             </article>
+
+            <article class="paper-card">
+              <div class="paper-title">
+                [8] DiffGuard: Semantic Mismatch-Guided Out-of-Distribution Detection using Pre-trained Diffusion Models
+              </div>
+              <div class="paper-meta">
+                <span>ICCV 2023</span>
+                <span>Citations: 42 (as on date 08/25/2026)</span>
+                <span>Category: OOD, Reconstruction-based</span>
+              </div>
+              <div class="paper-link">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10376543?casa_token=77vVn_6C53IAAAAA:uHodEMYYqGNKiOeTuGnU7msVmktwwwOHOkiId4WaTdqmNEB2KxnkhvPxgPvOP8sRSbIfZ0Zc" target="_blank" rel="noopener noreferrer">
+                  Paper link
+                </a>
+              </div>
+              <div class="paper-summary">
+                <p>
+                  Prior work called MoodCat had leveraged generative adversarial networks (GANs) to perform OOD detection. However, due to instability in training GANs 
+                  jointly on both image and label conditions, it could not scale to larger and more diverse datasets.
+                </p>
+                <p>
+                  To address this, DiffGuard proposes using a pretrained diffusion model instead. A classifier-under-protection (classifier trained on ID data) makes a 
+                  label prediction on the given image during inference. Since it is a closed-set classifier, this prediction is confident but not necessarily correct. 
+                  The input image is then passed through a deterministic forward diffusion process (DDIM inversion), encoding it into a noise latent that can later be 
+                  faithfully reconstructed. During the reverse denoising process, the model is conditioned on both this image latent and the predicted label, pulling 
+                  generation in two directions at once: toward reconstructing the original content, and toward reflecting the predicted class's semantics. If the image 
+                  is ID and the prediction is correct, both conditions agree, and the reconstruction stays close to the original. If the image is OOD, the predicted 
+                  label is necessarily wrong, so the label condition pulls the reconstruction toward features the image does not actually have, producing a distinctly 
+                  different result. The two images are compared using either l1 distance on the classifier's logits, or the DISTS metric, which compares structure and 
+                  texture. There is an inherent tension between staying faithful to the image and being controllable by the label, so the paper introduces three 
+                  techniques to balance this across the two guidance mechanisms (classifier guidance and classifier-free guidance). Additionally, DiffGuard poses a 
+                  limitation, in which, if the classifier misclassifies an ID image, the reconstruction is guided by the wrong label, causing it to diverge from the 
+                  original image even though the image itself is ID, marking it as a false positive.
+                </p>
+                <div class="paper-figure">
+                  <img src="images/diffguard.png" alt="DiffGuard Architecture">
+                  <p class="caption">Figure: DiffGuard Architecture [8].</p>
+                </div>
+              </div>
+            </article>
       </div>
     </section>
     
@@ -508,6 +548,13 @@
             </tr>
             <tr>
               <td>LMD [7]</td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+            </tr>
+            <tr>
+              <td>DiffGuard [8]</td>
               <td class="empty"></td>
               <td class="empty"></td>
               <td class="empty"></td>
@@ -606,6 +653,16 @@
               <td class="empty"></td>
               <td class="empty"></td>
             </tr>
+            <tr>
+              <td>DiffGurad [8]</td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -679,6 +736,14 @@
               <td>LMD [7]</td>
               <td class="empty"></td>
               <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="empty"></td>
+              <td class="check"></td>
+            </tr>
+            <tr>
+              <td>DiffGuard [8]</td>
+              <td class="empty"></td>
+              <td class="check"></td>
               <td class="empty"></td>
               <td class="empty"></td>
               <td class="check"></td>
