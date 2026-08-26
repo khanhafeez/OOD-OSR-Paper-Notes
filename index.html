@@ -469,7 +469,7 @@
                   (via DDIM inversion), encoding it into a noise latent that can be faithfully reconstructed. During the reverse denoising process, the model is 
                   conditioned on both this noisy image latent and the predicted label from the classifer, pulling generation in two directions ((same or opposite)): toward 
                   reconstructing the original content, and toward reflecting the predicted class's semantics. If the image is ID and the prediction is correct, both 
-                  conditions agree, and the reconstruction stays close to the original. If the image is OOD, the predicted label creates a semantic mismatch, pulling the 
+                  conditions agree, and the reconstruction stays close to the original. Conversely, if the image is OOD, the predicted label creates a semantic mismatch, pulling the 
                   reconstruction toward features the image does not actually have. The original and reconstructed images are compared using either l1 distance on the 
                   classifier's logits, or the DISTS metric (which compares structure and texture). There is an inherent tension between staying faithful to the image and 
                   being controllable by the label, so the paper introduces three techniques to balance this across the two guidance mechanisms (classifier guidance and 
