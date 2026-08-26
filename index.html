@@ -465,17 +465,16 @@
                 </p>
                 <p>
                   To address this, DiffGuard proposes using a pretrained diffusion model instead. A classifier-under-protection (classifier trained on ID data) makes a 
-                  label prediction on the given image during inference. Since it is a closed-set classifier, this prediction is confident but not necessarily correct. 
-                  The input image is then passed through a deterministic forward diffusion process (DDIM inversion), encoding it into a noise latent that can later be 
-                  faithfully reconstructed. During the reverse denoising process, the model is conditioned on both this image latent and the predicted label, pulling 
-                  generation in two directions at once: toward reconstructing the original content, and toward reflecting the predicted class's semantics. If the image 
-                  is ID and the prediction is correct, both conditions agree, and the reconstruction stays close to the original. If the image is OOD, the predicted 
-                  label is necessarily wrong, so the label condition pulls the reconstruction toward features the image does not actually have, producing a distinctly 
-                  different result. The two images are compared using either l1 distance on the classifier's logits, or the DISTS metric, which compares structure and 
-                  texture. There is an inherent tension between staying faithful to the image and being controllable by the label, so the paper introduces three 
-                  techniques to balance this across the two guidance mechanisms (classifier guidance and classifier-free guidance). Additionally, DiffGuard poses a 
-                  limitation, in which, if the classifier misclassifies an ID image, the reconstruction is guided by the wrong label, causing it to diverge from the 
-                  original image even though the image itself is ID, marking it as a false positive.
+                  label prediction on the given image during inference. The input image is then passed through a deterministic forward diffusion process 
+                  (via DDIM inversion), encoding it into a noise latent that can be faithfully reconstructed. During the reverse denoising process, the model is 
+                  conditioned on both this noisy image latent and the predicted label from the classifer, pulling generation in two opposite directions: toward 
+                  reconstructing the original content, and toward reflecting the predicted class's semantics. If the image is ID and the prediction is correct, both 
+                  conditions agree, and the reconstruction stays close to the original. If the image is OOD, the predicted label creates a semantic mismatch, pulling the 
+                  reconstruction toward features the image does not actually have. The original and reconstructed images are compared using either l1 distance on the 
+                  classifier's logits, or the DISTS metric (which compares structure and texture). There is an inherent tension between staying faithful to the image and 
+                  being controllable by the label, so the paper introduces three techniques to balance this across the two guidance mechanisms (classifier guidance and 
+                  classifier-free guidance). Additionally, DiffGuard poses a limitation, in which, if the classifier misclassifies an ID image, the reconstruction is 
+                  guided by the wrong label, causing it to diverge from the original image and producing a false positive.
                 </p>
                 <div class="paper-figure">
                   <img src="images/diffguard.png" alt="DiffGuard Architecture">
